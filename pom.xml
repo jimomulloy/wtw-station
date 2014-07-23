@@ -13,10 +13,13 @@
 	<modules>
 		<module>wtw-station-service</module>
 		<module>wtw-station-source</module>
+		<module>wtw-station-source-yahoo</module>
+		<module>wtw-station-source-google</module>
+		<module>wtw-station-source-met</module>
+		<module>wtw-station-source-xively</module>
 		<module>wtw-station-manager</module>
 		<module>wtw-station-rs</module>
 		<module>wtw-station-client</module>
-		<module>wtw-station-source-yahoo</module>
 	</modules>
 
 	<dependencies>

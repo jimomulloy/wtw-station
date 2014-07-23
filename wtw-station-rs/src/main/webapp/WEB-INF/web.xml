@@ -14,7 +14,11 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-      		classpath:spring/wtwstationsourceyahoo.xml
+			classpath:spring/wtwstationsourceyahoo.xml
+			classpath:spring/wtwstationsourcemet.xml
+      		classpath:spring/wtwstationsourcegoogle.xml
+      		classpath:spring/wtwgeoclient.xml
+      		classpath:spring/wtwbaseclient.xml
       		classpath:spring/wtwstationman.xml
       		classpath:spring/wtwstation.xml
    		</param-value>

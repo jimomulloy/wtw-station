@@ -1,4 +1,4 @@
-package java.uk.commonline.weather.station.jaxrs;
+package uk.commonline.weather.station.jaxrs;
 
 import java.util.logging.Logger;
 

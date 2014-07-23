@@ -1,10 +1,17 @@
 package uk.commonline.weather.station.source;
 
-import uk.commonline.weather.station.service.WeatherStationService;
+import java.util.List;
+
+import uk.commonline.weather.model.Weather;
+import uk.commonline.weather.model.WeatherForecast;
 
 public interface WeatherStationSource {
-
-    WeatherStationService getWeatherStationService();
-
+    
+    List<Weather> report(double latitude, double longitude) throws Exception;
+    
+    Weather getCurrentWeather(double latitude, double longitude) throws Exception;
+    
+    List<WeatherForecast> getForecastWeather(double latitude, double longitude, int hours, int count) throws Exception;
+    
     String getSourceName();
 }

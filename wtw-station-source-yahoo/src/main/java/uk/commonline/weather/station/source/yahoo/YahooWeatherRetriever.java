@@ -8,19 +8,23 @@ import org.apache.log4j.Logger;
 
 public class YahooWeatherRetriever {
 
-	private static Logger log = Logger.getLogger(YahooWeatherRetriever.class);
-	
-	private String yahooAppid = "nHC8SgfV34FhrOczpZWEwOtNUU44RVqanKQjsAb2soBuM2LhXEt.gJVIkDzvU4sXvQ--";
+    private static Logger log = Logger.getLogger(YahooWeatherRetriever.class);
 
-	public InputStream retrieveByZip(String zipcode) throws Exception {
-		log.info( "Retrieving Weather Data" );
-		String url = "http://where.yahooapis.com/v1/places$and(.q('"+zipcode+"'),.type(7));count=1?appid="+yahooAppid;
-		URLConnection conn = new URL(url).openConnection();
-		return conn.getInputStream();
-	}
-	
-	public void setUrl(String url){
-	    
-	}
+    private String yahooAppid = "nHC8SgfV34FhrOczpZWEwOtNUU44RVqanKQjsAb2soBuM2LhXEt.gJVIkDzvU4sXvQ--";
+
+    public InputStream retrieveById(long id) throws Exception {
+	String url = "http://weather.yahooapis.com/forecastrss?w=" + id;
+	log.info("Retrieving Weather Data for url:" + url);
+	URLConnection conn = new URL(url).openConnection();
+	return conn.getInputStream();
+    }
+
+    public InputStream retrieveHistoricWeatherById(long id, long periodFrom, long periodTo) throws Exception {
+	return null;
+    }
+    
+    public void setUrl(String url) {
+
+    }
 
 }
