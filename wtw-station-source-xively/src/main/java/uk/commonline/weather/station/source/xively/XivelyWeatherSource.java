@@ -17,7 +17,6 @@ import uk.commonline.weather.station.source.WeatherStationSource;
 public class XivelyWeatherSource implements WeatherStationSource {
 
     private static Logger log = Logger.getLogger(XivelyWeatherSource.class);
-
     @Inject
     private XivelyWeatherRetriever xivelyWeatherRetriever;
 
@@ -28,101 +27,101 @@ public class XivelyWeatherSource implements WeatherStationSource {
     private GeoLocationService geoLocationService;
 
     @Override
-    public List<Weather> report(double latitude, double longitude) {
-	String id = geoLocationService.getLocationId(getSourceName(), latitude, longitude);
-	List<Weather> report = new ArrayList<Weather>();
-	// location.setCity("Unknown");
-
-	try {
-	    InputStream dataIn = xivelyWeatherRetriever.retrieveById(Long.parseLong(id));
-	    if (dataIn == null) {
-		throw new Exception("xivelyWeatherRetriever.retrieveByIdnull stream");
-	    }
-	    // Parse DataSet
-	    Source source = new Source();
-	    source.setName(getSourceName());
-	    report = xivelyWeatherParser.parseWeatherReport(source, dataIn);
-
-	} catch (Exception ex) {
-	    ex.printStackTrace();
-	}
-
-	return report;
-    }
-
-    @Override
-    public String getSourceName() {
-	return "xively";
-    }
-
-    public XivelyWeatherParser getXivelyWeatherParser() {
-	return xivelyWeatherParser;
-    }
-
-    public XivelyWeatherRetriever getXivelyWeatherRetriever() {
-	return xivelyWeatherRetriever;
-    }
-
-    public void setXivelyWeatherParser(XivelyWeatherParser xivelyWeatherParser) {
-	this.xivelyWeatherParser = xivelyWeatherParser;
-    }
-
-    public void setXivelyWeatherRetriever(XivelyWeatherRetriever xivelyWeatherRetriever) {
-	this.xivelyWeatherRetriever = xivelyWeatherRetriever;
-    }
-
-    public GeoLocationService getGeoLocationService() {
-	return geoLocationService;
-    }
-
-    public void setGeoLocationService(GeoLocationService geoLocationService) {
-	this.geoLocationService = geoLocationService;
-    }
-
-    @Override
     public Weather getCurrentWeather(double latitude, double longitude) throws Exception {
-	String id = geoLocationService.getLocationId(getSourceName(), latitude, longitude);
-	Weather w = null;
-	// location.setCity("Unknown");
+        String id = geoLocationService.getLocationId(getSourceName(), latitude, longitude);
+        Weather w = null;
+        // location.setCity("Unknown");
 
-	try {
-	    InputStream dataIn = xivelyWeatherRetriever.retrieveById(Long.parseLong(id));
-	    if (dataIn == null) {
-		throw new Exception("xivelyWeatherRetriever.retrieveById null stream");
-	    }
-	    // Parse DataSet
-	    Source source = new Source();
-	    source.setName(getSourceName());
-	    w = xivelyWeatherParser.parseWeather(source, dataIn);
+        try {
+            InputStream dataIn = xivelyWeatherRetriever.retrieveById(Long.parseLong(id));
+            if (dataIn == null) {
+                throw new Exception("xivelyWeatherRetriever.retrieveById null stream");
+            }
+            // Parse DataSet
+            Source source = new Source();
+            source.setName(getSourceName());
+            w = xivelyWeatherParser.parseWeather(source, dataIn);
 
-	} catch (Exception ex) {
-	    ex.printStackTrace();
-	}
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
-	return w;
+        return w;
     }
 
     @Override
     public List<WeatherForecast> getForecastWeather(double latitude, double longitude, int hours, int count) throws Exception {
-	String id = geoLocationService.getLocationId(getSourceName(), latitude, longitude);
-	List<WeatherForecast> report = new ArrayList<WeatherForecast>();
-	// location.setCity("Unknown");
+        String id = geoLocationService.getLocationId(getSourceName(), latitude, longitude);
+        List<WeatherForecast> report = new ArrayList<WeatherForecast>();
+        // location.setCity("Unknown");
 
-	try {
-	    InputStream dataIn = xivelyWeatherRetriever.retrieveById(Long.parseLong(id));
-	    if (dataIn == null) {
-		throw new Exception("xivelyWeatherRetriever.retrieveById null stream");
-	    }
-	    // Parse DataSet
-	    Source source = new Source();
-	    source.setName(getSourceName());
-	    report = xivelyWeatherParser.parseForecastWeather(source, dataIn, hours, count);
+        try {
+            InputStream dataIn = xivelyWeatherRetriever.retrieveById(Long.parseLong(id));
+            if (dataIn == null) {
+                throw new Exception("xivelyWeatherRetriever.retrieveById null stream");
+            }
+            // Parse DataSet
+            Source source = new Source();
+            source.setName(getSourceName());
+            report = xivelyWeatherParser.parseForecastWeather(source, dataIn, hours, count);
 
-	} catch (Exception ex) {
-	    ex.printStackTrace();
-	}
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
-	return report;
+        return report;
+    }
+
+    public GeoLocationService getGeoLocationService() {
+        return geoLocationService;
+    }
+
+    @Override
+    public String getSourceName() {
+        return "xively";
+    }
+
+    public XivelyWeatherParser getXivelyWeatherParser() {
+        return xivelyWeatherParser;
+    }
+
+    public XivelyWeatherRetriever getXivelyWeatherRetriever() {
+        return xivelyWeatherRetriever;
+    }
+
+    @Override
+    public List<Weather> report(double latitude, double longitude) {
+        String id = geoLocationService.getLocationId(getSourceName(), latitude, longitude);
+        List<Weather> report = new ArrayList<Weather>();
+        // location.setCity("Unknown");
+
+        try {
+            InputStream dataIn = xivelyWeatherRetriever.retrieveById(Long.parseLong(id));
+            if (dataIn == null) {
+                throw new Exception("xivelyWeatherRetriever.retrieveByIdnull stream");
+            }
+            // Parse DataSet
+            Source source = new Source();
+            source.setName(getSourceName());
+            report = xivelyWeatherParser.parseWeatherReport(source, dataIn);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return report;
+    }
+
+    public void setGeoLocationService(GeoLocationService geoLocationService) {
+        this.geoLocationService = geoLocationService;
+    }
+
+    public void setXivelyWeatherParser(XivelyWeatherParser xivelyWeatherParser) {
+        this.xivelyWeatherParser = xivelyWeatherParser;
+    }
+
+    public void setXivelyWeatherRetriever(XivelyWeatherRetriever xivelyWeatherRetriever) {
+        this.xivelyWeatherRetriever = xivelyWeatherRetriever;
     }
 
 }

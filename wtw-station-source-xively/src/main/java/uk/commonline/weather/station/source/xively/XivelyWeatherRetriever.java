@@ -13,16 +13,16 @@ public class XivelyWeatherRetriever {
     private String yahooAppid = "nHC8SgfV34FhrOczpZWEwOtNUU44RVqanKQjsAb2soBuM2LhXEt.gJVIkDzvU4sXvQ--";
 
     public InputStream retrieveById(long id) throws Exception {
-	String url = "http://weather.yahooapis.com/forecastrss?w=" + id;
-	log.info("Retrieving Weather Data for url:" + url);
-	URLConnection conn = new URL(url).openConnection();
-	return conn.getInputStream();
+        String url = "http://weather.yahooapis.com/forecastrss?w=" + id;
+        log.info("Retrieving Weather Data for url:" + url);
+        URLConnection conn = new URL(url).openConnection();
+        return conn.getInputStream();
     }
 
     public InputStream retrieveHistoricWeatherById(long id, long periodFrom, long periodTo) throws Exception {
-	return null;
+        return null;
     }
-    
+
     public void setUrl(String url) {
 
     }

@@ -12,8 +12,8 @@ public class StationApplication extends ResourceConfig {
     public StationApplication() {
         packages("uk.commonline.weather.station.jaxrs;uk.commonline.weather.model;org.codehaus.jackson.jaxrs");
 
-        // Enable LoggingFilter & output entity.     
+        // Enable LoggingFilter & output entity.
         registerInstances(new LoggingFilter(Logger.getLogger(StationApplication.class.getName()), true));
- 
+
     }
 }

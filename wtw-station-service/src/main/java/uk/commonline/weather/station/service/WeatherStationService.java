@@ -7,10 +7,10 @@ import uk.commonline.weather.model.WeatherForecast;
 import uk.commonline.weather.model.WeatherReport;
 
 public interface WeatherStationService {
-    
-    WeatherReport getWeatherReport(double latitude, double longitude) throws Exception;
-    
+
     List<Weather> getCurrentWeather(double latitude, double longitude) throws Exception;
-    
+
     List<WeatherForecast> getForecastWeather(double latitude, double longitude, int hours, int count) throws Exception;
+
+    WeatherReport getWeatherReport(double latitude, double longitude) throws Exception;
 }

@@ -30,55 +30,55 @@ public class WeatherStationRestService /* implements WeatherStationService */{
     @Inject
     WeatherStationManager weatherStationManager;
 
-    protected WeatherStationManager getWeatherStationManager() {
-	return weatherStationManager;
-    }
-
-    public void setWeatherStationManager(WeatherStationManager weatherStationManager) {
-	this.weatherStationManager = weatherStationManager;
-    }
-
-    public Class<Weather> getEiClass() {
-	return Weather.class;
-    }
-
-    @POST
-    @Path("report/lat/{lat}/long/{long}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public WeatherReport getWeatherReport(@PathParam("lat") double latitude, @PathParam("long") double longitude) throws Exception {
-	try {
-	    WeatherReport w = weatherStationManager.getWeatherReport(latitude, longitude);
-	    return w;
-	} catch (Exception ex) {
-	    ex.printStackTrace();
-	    return null;
-	}
-    }
-
     @GET
     @Path("current/lat/{lat}/long/{long}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Weather> getCurrentWeather(@PathParam("lat") double latitude, @PathParam("long") double longitude) throws Exception {
-	try {
-	    List<Weather> w = weatherStationManager.getCurrentWeather(latitude, longitude);
-	    return w;
-	} catch (Exception ex) {
-	    ex.printStackTrace();
-	    return null;
-	}
+        try {
+            List<Weather> w = weatherStationManager.getCurrentWeather(latitude, longitude);
+            return w;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public Class<Weather> getEiClass() {
+        return Weather.class;
     }
 
     @GET
     @Path("forecast/lat/{lat}/long/{long}/hours/{hours}/count/{count}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<WeatherForecast> getForecastWeather(@PathParam("lat") double latitude, @PathParam("long") double longitude,
-	    @PathParam("hours") int hours, @PathParam("count") int count) throws Exception {
-	try {
-	    List<WeatherForecast> w = weatherStationManager.getForecastWeather(latitude, longitude, hours, count);
-	    return w;
-	} catch (Exception ex) {
-	    ex.printStackTrace();
-	    return null;
-	}
+            @PathParam("hours") int hours, @PathParam("count") int count) throws Exception {
+        try {
+            List<WeatherForecast> w = weatherStationManager.getForecastWeather(latitude, longitude, hours, count);
+            return w;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    @POST
+    @Path("report/lat/{lat}/long/{long}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public WeatherReport getWeatherReport(@PathParam("lat") double latitude, @PathParam("long") double longitude) throws Exception {
+        try {
+            WeatherReport w = weatherStationManager.getWeatherReport(latitude, longitude);
+            return w;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    protected WeatherStationManager getWeatherStationManager() {
+        return weatherStationManager;
+    }
+
+    public void setWeatherStationManager(WeatherStationManager weatherStationManager) {
+        this.weatherStationManager = weatherStationManager;
     }
 }
