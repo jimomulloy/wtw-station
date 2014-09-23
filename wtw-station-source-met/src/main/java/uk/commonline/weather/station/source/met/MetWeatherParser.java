@@ -151,6 +151,10 @@ public class MetWeatherParser {
         weather.setPeriodTo(new Date(forecastDate.getTime() + (1000 * 60 * 60 * 24)));
 
         String code = getString("W", drep);
+
+        if(code == null || code.isEmpty()){
+            code = "99";
+        }
         condition.setCode(code);
         try {
             ConditionInfo ci = getConditonInfo(Integer.parseInt(code));
@@ -232,6 +236,10 @@ public class MetWeatherParser {
         condition.setToTime(sourceDate);
         condition.setWeather(weather);
         String code = getString("W", rep);
+
+        if(code == null || code.isEmpty()){
+            code = "99";
+        }
         condition.setCode(code);
         try {
             ConditionInfo ci = getConditonInfo(Integer.parseInt(code));

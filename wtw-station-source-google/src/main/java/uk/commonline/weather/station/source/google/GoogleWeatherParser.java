@@ -54,7 +54,7 @@ public class GoogleWeatherParser {
         hashMap.put(321, new ConditionInfo(321, "http://www.metoffice.gov.uk/media/image/a/k/w11.png", "shower drizzle"));
 
         hashMap.put(500, new ConditionInfo(500, "http://www.metoffice.gov.uk/media/image/b/r/w12.png", "light rain"));
-        hashMap.put(501, new ConditionInfo(501, "http://www.metoffice.gov.uk/media/image/3/n/w12.png", "moderate rain"));
+        hashMap.put(501, new ConditionInfo(501, "http://www.metoffice.gov.uk/media/image/b/r/w12.png", "moderate rain"));
         hashMap.put(502, new ConditionInfo(502, "http://www.metoffice.gov.uk/media/image/3/n/w15.png", "heavy intensity rain"));
         hashMap.put(503, new ConditionInfo(503, "http://www.metoffice.gov.uk/media/image/7/3/w31.png", "very heavy rain"));
         hashMap.put(504, new ConditionInfo(504, "http://www.metoffice.gov.uk/media/image/7/3/w31.png", "extreme rain"));
@@ -62,7 +62,7 @@ public class GoogleWeatherParser {
         hashMap.put(520, new ConditionInfo(520, "http://www.metoffice.gov.uk/media/image/b/r/w12.png", "light intensity shower rain"));
         hashMap.put(521, new ConditionInfo(521, "http://www.metoffice.gov.uk/media/image/b/r/w12.png", "shower rain"));
         hashMap.put(522, new ConditionInfo(522, "http://www.metoffice.gov.uk/media/image/3/n/w15.png", "heavy intensity shower rain"));
-        hashMap.put(531, new ConditionInfo(531, "http://www.metoffice.gov.uk/media/image/3/n/w12.png", "ragged shower rain"));
+        hashMap.put(531, new ConditionInfo(531, "http://www.metoffice.gov.uk/media/image/b/r/w12.png", "ragged shower rain"));
 
         hashMap.put(600, new ConditionInfo(600, "http://www.metoffice.gov.uk/media/image/5/2/w24.png", "light snow"));
         hashMap.put(601, new ConditionInfo(601, "http://www.metoffice.gov.uk/media/image/6/l/w27.png", "snow"));
@@ -89,7 +89,7 @@ public class GoogleWeatherParser {
         hashMap.put(800, new ConditionInfo(800, "http://www.metoffice.gov.uk/media/image/t/s/w1.png", "clear sky"));
         hashMap.put(801, new ConditionInfo(801, "http://www.metoffice.gov.uk/media/image/s/s/w3.png", "few clouds"));
         hashMap.put(802, new ConditionInfo(802, "http://www.metoffice.gov.uk/media/image/s/s/w3.png", "scattered clouds"));
-        hashMap.put(803, new ConditionInfo(803, "http://www.metoffice.gov.uk/media/image/s/s/w8.png", "broken clouds"));
+        hashMap.put(803, new ConditionInfo(803, "http://www.metoffice.gov.uk/media/image/2/i/w8.png", "broken clouds"));
         hashMap.put(804, new ConditionInfo(804, "http://www.metoffice.gov.uk/media/image/2/2/w7.png", "overcast clouds"));
 
         hashMap.put(900, new ConditionInfo(900, "http://www.metoffice.gov.uk/media/image/7/3/w31.png", "tornado"));
