@@ -88,7 +88,11 @@ public class WeatherStationManangerImpl implements WeatherStationManager {
 
         @Override
         public List<WeatherForecast> call() throws Exception {
-            return weatherStationSource.getForecastWeather(latitude, longitude, hours, count);
+            try {
+                return weatherStationSource.getForecastWeather(latitude, longitude, hours, count);
+            } catch (Exception ex) {
+                return new ArrayList<WeatherForecast>();
+            }
         }
     }
 
@@ -104,8 +108,12 @@ public class WeatherStationManangerImpl implements WeatherStationManager {
         }
 
         @Override
-        public List<Weather> call() throws Exception {
-            return weatherStationSource.report(latitude, longitude);
+        public List<Weather> call() {
+            try {
+                return weatherStationSource.report(latitude, longitude);
+            } catch (Exception ex) {
+                return new ArrayList<Weather>();
+            }
         }
     }
 
@@ -154,6 +162,7 @@ public class WeatherStationManangerImpl implements WeatherStationManager {
             if (!sourceMap.containsKey(weather.getSource())) {
                 wsd = report.new WeatherSourceData();
                 sourceMap.put(weather.getSource(), wsd);
+                wsd.setStatus(0);
             }
             wsd = sourceMap.get(weather.getSource());
             if (weather instanceof WeatherForecast) {
@@ -162,7 +171,13 @@ public class WeatherStationManangerImpl implements WeatherStationManager {
                 wsd.getRecordings().add(weather);
             }
         }
-
+        for (WeatherStationSource weatherStationSource : weatherStationSources) {
+            if (!sourceMap.containsKey(weatherStationSource.getSourceName())) {
+                WeatherSourceData wsd = report.new WeatherSourceData();
+                sourceMap.put(weatherStationSource.getSourceName(), wsd);
+                wsd.setStatus(1);
+            }
+        }
         report.setDate(new Date());
         return report;
     }
