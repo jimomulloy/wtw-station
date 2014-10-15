@@ -22,22 +22,12 @@ import uk.commonline.weather.model.Weather;
 import uk.commonline.weather.model.WeatherForecast;
 import uk.commonline.weather.model.WeatherReport;
 import uk.commonline.weather.model.WeatherReport.WeatherSourceData;
-import uk.commonline.weather.station.service.WeatherStationManager;
+import uk.commonline.weather.station.service.WeatherStationService;
 import uk.commonline.weather.station.source.WeatherStationSource;
 import akka.dispatch.ExecutionContexts;
 import akka.dispatch.Mapper;
-import akka.dispatch.OnSuccess;
 
-public class WeatherStationManangerImpl implements WeatherStationManager {
-
-    public final class PrintResult<T> extends OnSuccess<T> {
-
-        @Override
-        public final void onSuccess(T t) {
-            // System.out.println("PrintResults says: Total pause was for " +
-            // (t) + " milliseconds");
-        }
-    }
+public class WeatherStationServiceImpl implements WeatherStationService {
 
     public class StationCurrentWeatherCaller implements Callable<Weather> {
 

@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xsi:schemaLocation="
 	http://www.springframework.org/schema/beans 
              http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
@@ -27,13 +24,16 @@
              http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd"
 	default-lazy-init="false">
 
+	<context:property-placeholder location="classpath:spring/${ENV_SYSTEM:dev}/config.properties"/>
+
 	<context:component-scan base-package="uk.commonline.data.client.jaxrs, uk.commonline.weather.station.client.jaxrs" />
 
 	<context:annotation-config />
-	
+
 	<bean id="restClient" class="uk.commonline.data.client.jaxrs.RestClient">
+		<property name="url" value="${jaxrs.url}" />
 	</bean>
-	
+
 	<bean id="weatherStationClient" class="uk.commonline.weather.station.client.jaxrs.WeatherStationClient">
 		<property name="restClient" ref="restClient" />
 	</bean>

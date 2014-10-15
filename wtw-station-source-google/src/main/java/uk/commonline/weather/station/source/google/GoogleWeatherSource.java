@@ -28,13 +28,10 @@ public class GoogleWeatherSource implements WeatherStationSource {
 
         try {
             String currentData = getGoogleWeatherRetriever().getWeatherData(latitude, longitude);
-
             // Parse DataSet
             Source source = new Source();
             source.setName(getSourceName());
-            // report =
-            // getGoogleWeatherParser().parseCurrentWeatherReport(source,
-            // currentData);
+            w = getGoogleWeatherParser().parseWeatherReport(source, currentData);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -53,9 +50,7 @@ public class GoogleWeatherSource implements WeatherStationSource {
             // Parse DataSet
             Source source = new Source();
             source.setName(getSourceName());
-            // report =
-            // getGoogleWeatherParser().parseForecastWeatherReport(source,
-            // currentData);
+            report = getGoogleWeatherParser().parseForecastWeather(source, currentData);
 
         } catch (Exception ex) {
             ex.printStackTrace();

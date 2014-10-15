@@ -1,5 +1,6 @@
 package uk.commonline.weather.station.jaxrs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -16,30 +17,32 @@ import org.springframework.transaction.annotation.Transactional;
 import uk.commonline.weather.model.Weather;
 import uk.commonline.weather.model.WeatherForecast;
 import uk.commonline.weather.model.WeatherReport;
-import uk.commonline.weather.station.service.WeatherStationManager;
+import uk.commonline.weather.station.service.WeatherStationService;
 
 /**
- * Location controller.
+ * @author Jim O'Mulloy
  * 
+ *         WTW Station JAXRS Service
+ *
  */
 @Path("/station")
 @Component
-@Transactional
-public class WeatherStationRestService /* implements WeatherStationService */{
+public class WeatherStationRestService {
 
     @Inject
-    WeatherStationManager weatherStationManager;
+    WeatherStationService weatherStationService;
 
     @GET
     @Path("current/lat/{lat}/long/{long}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Weather> getCurrentWeather(@PathParam("lat") double latitude, @PathParam("long") double longitude) throws Exception {
+        List<Weather> w = new ArrayList<Weather>();
         try {
-            List<Weather> w = weatherStationManager.getCurrentWeather(latitude, longitude);
+            w = weatherStationService.getCurrentWeather(latitude, longitude);
             return w;
         } catch (Exception ex) {
             ex.printStackTrace();
-            return null;
+            return w;
         }
     }
 
@@ -52,12 +55,13 @@ public class WeatherStationRestService /* implements WeatherStationService */{
     @Produces(MediaType.APPLICATION_JSON)
     public List<WeatherForecast> getForecastWeather(@PathParam("lat") double latitude, @PathParam("long") double longitude,
             @PathParam("hours") int hours, @PathParam("count") int count) throws Exception {
+        List<WeatherForecast> w = new ArrayList<WeatherForecast>();
         try {
-            List<WeatherForecast> w = weatherStationManager.getForecastWeather(latitude, longitude, hours, count);
+            w = weatherStationService.getForecastWeather(latitude, longitude, hours, count);
             return w;
         } catch (Exception ex) {
             ex.printStackTrace();
-            return null;
+            return w;
         }
     }
 
@@ -65,20 +69,21 @@ public class WeatherStationRestService /* implements WeatherStationService */{
     @Path("report/lat/{lat}/long/{long}")
     @Produces(MediaType.APPLICATION_JSON)
     public WeatherReport getWeatherReport(@PathParam("lat") double latitude, @PathParam("long") double longitude) throws Exception {
+        WeatherReport w = new WeatherReport();
         try {
-            WeatherReport w = weatherStationManager.getWeatherReport(latitude, longitude);
+            w = weatherStationService.getWeatherReport(latitude, longitude);
             return w;
         } catch (Exception ex) {
             ex.printStackTrace();
-            return null;
+            return w;
         }
     }
 
-    protected WeatherStationManager getWeatherStationManager() {
-        return weatherStationManager;
+    protected WeatherStationService getWeatherStationService() {
+        return weatherStationService;
     }
 
-    public void setWeatherStationManager(WeatherStationManager weatherStationManager) {
-        this.weatherStationManager = weatherStationManager;
+    public void setWeatherStationService(WeatherStationService weatherStationService) {
+        this.weatherStationService = weatherStationService;
     }
 }

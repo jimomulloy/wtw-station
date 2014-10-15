@@ -22,13 +22,9 @@ import uk.commonline.weather.station.source.ConditionInfo;
 
 public class GoogleWeatherParser {
 
-    private static Logger log = Logger.getLogger(GoogleWeatherParser.class);
-
     private static final Map<Integer, ConditionInfo> conditionInfoMap = prepareMap();
 
-    private static int getInt(String tagName, JSONObject jObj) throws JSONException {
-        return jObj.getInt(tagName);
-    }
+    private static Logger log = Logger.getLogger(GoogleWeatherParser.class);
 
     private static Map<Integer, ConditionInfo> prepareMap() {
         Map<Integer, ConditionInfo> hashMap = new HashMap<>();
@@ -140,7 +136,6 @@ public class GoogleWeatherParser {
     }
 
     public List<WeatherForecast> parseForecastWeather(Source source, String data) throws JSONException {
-        log.debug("!!Google parseForecastWeather:\n"+data);
         List<WeatherForecast> forecast = new ArrayList<WeatherForecast>();
 
         // We create out JSONObject from the data
@@ -220,7 +215,6 @@ public class GoogleWeatherParser {
     }
 
     public Weather parseWeatherReport(Source source, String data) throws JSONException {
-        log.debug("!!Google parseWeather:\n"+data);
         Weather weather = new Weather();
 
         weather.setSourceTime(new Date());

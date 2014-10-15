@@ -24,7 +24,7 @@
 
 	<context:annotation-config />
 
-	<bean id="weatherStationMananger" class="uk.commonline.weather.station.man.WeatherStationManangerImpl">
+	<bean id="weatherStationService" class="uk.commonline.weather.station.man.WeatherStationServiceImpl">
 		<property name="weatherStationSources">
 			<list>
 				<ref local="yahooWeatherSource" />

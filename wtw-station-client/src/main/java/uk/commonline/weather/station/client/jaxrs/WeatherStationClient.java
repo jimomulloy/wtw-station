@@ -17,15 +17,20 @@ import uk.commonline.weather.model.WeatherReportMessenger;
 import uk.commonline.weather.station.service.WeatherStationService;
 
 /**
+ * @author Jim O'Mulloy
+ * 
+ *         JAXRS Client for WTW Station Service.
+ *
  */
 public class WeatherStationClient extends AbstractCrudClient<Weather> implements WeatherStationService {
+
+    private static final String SERVICE_PATH = "wtwstation/webresources/station";
 
     @Override
     public List<Weather> getCurrentWeather(double latitude, double longitude) throws Exception {
         GenericType<List<Weather>> list = new GenericType<List<Weather>>() {
         };
-        List<Weather> report = getRestClient().getClient().register(WeatherListMessenger.class)
-                .target(getRestClient().createUrl("http://localhost:8080/wtwstation/webresources/")).path(getPath())
+        List<Weather> report = getRestClient().getClient().register(WeatherListMessenger.class).target(getRestClient().createUrl(getPath()))
                 .path("current/lat/{lat}/long/{long}").resolveTemplate("lat", latitude).resolveTemplate("long", longitude)
                 .request(MediaType.APPLICATION_JSON).get(list);
         return report;
@@ -35,8 +40,7 @@ public class WeatherStationClient extends AbstractCrudClient<Weather> implements
     public List<WeatherForecast> getForecastWeather(double latitude, double longitude, int hours, int count) throws Exception {
         GenericType<List<WeatherForecast>> list = new GenericType<List<WeatherForecast>>() {
         };
-        List<WeatherForecast> report = getRestClient().getClient().register(WeatherListMessenger.class)
-                .target(getRestClient().createUrl("http://localhost:8080/wtwstation/webresources/")).path(getPath())
+        List<WeatherForecast> report = getRestClient().getClient().register(WeatherListMessenger.class).target(getRestClient().createUrl(getPath()))
                 .path("forecast/lat/{lat}/long/{long}/hours/{hours}/count/{count}").resolveTemplate("lat", latitude)
                 .resolveTemplate("long", longitude).resolveTemplate("hours", hours).resolveTemplate("count", count)
                 .request(MediaType.APPLICATION_JSON).get(list);
@@ -45,13 +49,12 @@ public class WeatherStationClient extends AbstractCrudClient<Weather> implements
 
     @Override
     protected String getPath() {
-        return "station";
+        return SERVICE_PATH;
     }
 
     @Override
     public WeatherReport getWeatherReport(double latitude, double longitude) throws Exception {
-        WeatherReport report = getRestClient().getClient().register(WeatherReportMessenger.class)
-                .target(getRestClient().createUrl("http://localhost:8080/wtwstation/webresources/")).path(getPath())
+        WeatherReport report = getRestClient().getClient().register(WeatherReportMessenger.class).target(getRestClient().createUrl(getPath()))
                 .path("report/lat/{lat}/long/{long}").resolveTemplate("lat", latitude).resolveTemplate("long", longitude).request()
                 .post(Entity.entity(null, MediaType.APPLICATION_JSON), WeatherReport.class);
         return report;
