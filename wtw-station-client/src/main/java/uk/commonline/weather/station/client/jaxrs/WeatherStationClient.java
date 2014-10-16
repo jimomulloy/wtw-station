@@ -63,9 +63,9 @@ public class WeatherStationClient extends AbstractCrudClient<Weather> implements
     @Override
     public void setRestClient(RestClient restClient) {
         super.setRestClient(restClient);
-        restClient.registerProvider(WeatherListMessenger.class);
-        restClient.registerProvider(WeatherReportMessenger.class);
-        restClient.registerProvider(WeatherMessenger.class);
-        restClient.resetClient();
+        //restClient.registerProvider(WeatherListMessenger.class);
+        //restClient.registerProvider(WeatherReportMessenger.class);
+        //restClient.registerProvider(WeatherMessenger.class);
+        //restClient.resetClient();
     }
 }
